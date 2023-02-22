@@ -7,7 +7,7 @@ class UserController {
 
   async getAllUsers(req, res) {
     try {
-      const user = this.userService.getAllUsers();
+      const user = await this.userService.getAllUsers();
       res.status(200).json(user);
     } catch (err) {
       this.logger.error(err);
@@ -17,7 +17,9 @@ class UserController {
 
   async createUser(req, res) {
     try {
+      console.log(req.body);
       const user = await this.userService.createUser(req.body);
+
       res.status(201).json(user);
     } catch (err) {
       this.logger.error(err);

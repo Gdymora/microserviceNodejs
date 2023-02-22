@@ -27,10 +27,10 @@ class UserService {
 
   async createUser(user) {
     // Validate the user data before creating the user
-    const validationResult = this.userValidator.validateUser(user);
+    /*  const validationResult = this.userValidator.validateUser(user);
     if (!validationResult.valid) {
       throw new Error(validationResult.errors.join(', '));
-    }
+    } */
 
     // Create the user and log the operation
     const userId = await this.userRepository.create(user);

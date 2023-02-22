@@ -1,6 +1,13 @@
 const express = require('express');
 const userRouter = require('./userRouter');
 const app = express();
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(
+  bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 500 })
+);
 /* const container = require('./container');
 
 
