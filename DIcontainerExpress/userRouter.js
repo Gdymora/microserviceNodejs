@@ -1,10 +1,4 @@
-const express = require('express');
-const userRouter = require('./userRouter');
-const app = express();
-/* const container = require('./container');
-
-
-
+const container = require('./container');
 // Register dependencies in the container
 const logger = require('./logger');
 container.register('logger', logger);
@@ -27,17 +21,6 @@ const userControllerFactory = require('./userController');
 const userController = userControllerFactory(
   userService,
   container.resolve('logger')
-); */
+);
 
-// Use the dependencies in the Express.js app
-app.use('/users', userRouter.init());
-
-app.use(function (err, req, res, next) {
-  const logger = container.resolve('logger');
-  logger.error(err);
-  res.status(500).send('Something went wrong');
-});
-
-app.listen(3000, function () {
-  console.log('Server listening on port 3000');
-});
+module.exports = userController;
