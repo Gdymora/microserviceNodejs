@@ -1,8 +1,8 @@
-const container = require('./container');
+const container = require('../../core/container');
 // Register dependencies in the container
-const logger = require('./logger');
+const logger = require('../../core/logger');
 container.register('logger', logger);
-const database = require('./database');
+const database = require('../../database');
 container.register('database', database);
 const userRepository = require('./userRepository');
 container.register('userRepository', userRepository);
