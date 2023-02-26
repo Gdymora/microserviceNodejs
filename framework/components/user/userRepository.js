@@ -5,7 +5,7 @@ class UserRepository {
   constructor() {
     this.db = new sqlite3.Database(dbFilePath);
     this.createTable();
-    this.insertTable();
+   // this.insertTable();
   }
 
   createTable() {

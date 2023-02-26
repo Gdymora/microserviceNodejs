@@ -7,22 +7,20 @@ const container = require('./core/container');
 //const logger = require('./core/logger');
 //container.register('logger', logger);
 const bodyParser = require('body-parser');
-
+const RouteManager = require('./core/routeManager');
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(
   bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 500 })
 );
-
+const middlewareRouteMenedgerThems = require('./core/middleware/routeMenedgerThems')
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 //app.engine('ejs', require('ejs').__express);
 // Serve static files from the public directory
-app.use(express.static('themes/default/public'));
+app.use(express.static('themes'));
 // index page
 const pagesPath = path.join(__dirname, 'themes/default/public');
-app.get('/', function(req, res) {
-  res.render(pagesPath);
-});
+new middlewareRouteMenedgerThems().generateRoute(app)
 
 // about page
 app.get('/about', function(req, res) {
