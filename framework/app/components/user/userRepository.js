@@ -2,10 +2,13 @@ const sqlite3 = require('sqlite3').verbose();
 const dbFilePath = '../../../mydatabase.sqlite3';
 
 class UserRepository {
+  init = false;
   constructor() {
     this.db = new sqlite3.Database(dbFilePath);
-    this.createTable();
-   // this.insertTable();
+    if (this.init) {
+      this.createTable();
+      this.insertTable();
+    }
   }
 
   createTable() {

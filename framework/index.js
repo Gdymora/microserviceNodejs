@@ -3,9 +3,6 @@ const express = require('express');
 const userRouter = require('./app/components/user/userRouter');
 const app = express();
 const container = require('./core/container');
-// Register dependencies in the container
-//const logger = require('./core/logger');
-//container.register('logger', logger);
 const bodyParser = require('body-parser');
 const RouteManager = require('./core/routeManager');
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -15,17 +12,10 @@ app.use(
 const middlewareRouteMenedgerThems = require('./core/middleware/routeMenedgerThems')
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
-//app.engine('ejs', require('ejs').__express);
-// Serve static files from the public directory
 app.use(express.static('themes'));
 // index page
 const pagesPath = path.join(__dirname, 'themes/default/public');
 new middlewareRouteMenedgerThems().generateRoute(app)
-
-// about page
-app.get('/about', function(req, res) {
-  res.render(pagesPath+'/about');
-});
 
 // Serve static files from the public directory
 app.use(express.static( 'public'));
