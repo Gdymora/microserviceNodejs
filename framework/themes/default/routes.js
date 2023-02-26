@@ -1,5 +1,5 @@
 class getRoutesPagesPath {
-  getRoutes(pagesPath) {
+  getRoutes(data) { 
     const routes = [
       {
         method: 'GET',
@@ -19,7 +19,16 @@ class getRoutesPagesPath {
             next();
           },
           (req, res) => {
-            res.render(pagesPath);
+            res.render(data.pagesPath, { posts: data.posts, showRecentPostsWidget: true });
+          },
+        ],
+      },
+      {
+        method: 'GET',
+        path: '/about',
+        handler: [
+          (req, res) => {
+            res.render(data.pagesPath + '/about', { posts: data.posts, showRecentPostsWidget: true });
           },
         ],
       },
@@ -28,7 +37,7 @@ class getRoutesPagesPath {
         path: '/blog',
         handler: [
           (req, res) => {
-            res.render(pagesPath + '/blog');
+            res.render(data.pagesPath + '/blog', { posts: data.posts });
           },
         ],
       },

@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('../partials/head'); %>
-</head>
-<body class="container">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
 
-<header>
-  <%- include('../partials/header'); %>
-</header>
+    <main>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="jumbotron">
+            <h1>This is great</h1>
+            <p>Welcome to templating using EJS</p>
+          </div>
+        </div>
+      
+        <div class="col-sm-4">
+          <div class="well">
+            <h3>Look I'm A Sidebar!</h3>
+          </div>
+          <% if (showRecentPostsWidget) { %> 
+            <%- include('recent-posts-widget') %> 
+          <% } %>
+        </div>
+      </div>         
 
-<main>
-  <div class="jumbotron">
-    <h1>This is great</h1>
-    <p>Welcome to templating using EJS</p>
-  </div>
-</main>
-
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
-
-</body>
+      <div class="content">
+        <main>
+          <h2>Welcome to My WordPress Blog</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia augue vel urna tristique, ac eleifend sapien ultricies. Fusce fringilla vulputate sagittis. Integer consequat purus sit amet purus vehicula, vel dignissim lectus congue. Donec posuere massa eget enim consectetur efficitur. Aliquam et elit elit.</p>
+      
+          <h3>Recent Posts</h3>
+          <% posts.slice(0, 3).forEach(function(post) { %>
+            <article>
+              <h4><%= post.title %></h4>
+              <p><%= post.excerpt %></p>
+              <p><a href="/blog/<%= post.slug %>">Read More</a></p>
+            </article>
+          <% }); %>
+        </main>
+      </div>
+    </main>
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
 </html>

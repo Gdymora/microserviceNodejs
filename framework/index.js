@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const userRouter = require('./components/user/userRouter');
+const userRouter = require('./app/components/user/userRouter');
 const app = express();
 const container = require('./core/container');
 // Register dependencies in the container
