@@ -1,0 +1,21 @@
+<div >
+  <ng-container *ngIf="!winner; else winnerFalse">
+    <p class="text-center">Tap on a card !</p>
+  </ng-container>
+
+  <ng-template #winnerFalse>
+    <div class="center p-10">
+      <button mat-stroked-button (click)="restart()">restart</button>
+    </div>
+  </ng-template>
+
+  <div class="grid">
+    <english-card
+      *ngFor="let c of cards; let idx = index"
+      [data]="c"
+      (cardClicked)="cardClicked(idx)"
+      (deleteClicked)="deleteClicked(idx)"
+    >
+    </english-card>
+  </div>
+</div>

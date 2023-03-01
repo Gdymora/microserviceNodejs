@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CardData } from './card-data.model';
 
 @Component({
-  selector: 'app-root',
+  selector: 'english-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'frameAdminLte';
+export class AppComponent { 
+
 }

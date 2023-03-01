@@ -1,0 +1,29 @@
+<div
+  class="{{ 'in' + data.imageId }}"
+  [ngClass]="{
+    card: (breakpoint && data.imageId === 0) || !breakpoint,
+    none: breakpoint && data.imageId !== 0
+  }"
+  (click)="cardClicked.emit()"
+  [@cardFlip]="data.state"
+>
+  <div class="back">
+    <div (click)="speak(data.translate)" class="speack">
+      <!--  <img src="assets/wing_color.png" /> -->
+      <span class="material-icons">volume_up</span>
+    </div>
+    <div (click)="delete(data.imageId !== undefined ? data.imageId : -1 )" class="delete">
+      <span class="material-icons">delete</span>
+    </div>
+    <img src="assets/card-back.jpg" id="{{ data.imageId }}" />
+    <div class="text">
+      {{ data.translate }}
+    </div>
+    <!-- 
+    <div class="transcript">{{ data.transcription }}</div> -->
+  </div>
+  <div class="front">
+    <img src="assets/card-back.jpg" />
+    <div class="text">{{ data.word[language] }}</div>
+  </div>
+</div>

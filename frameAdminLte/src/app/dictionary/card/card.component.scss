@@ -1,0 +1,118 @@
+:host {
+    display: block;
+}
+
+
+
+.card {
+    -webkit-box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+@media (max-width: 600px) {
+    .card {       
+        height: 60vh;
+    }
+}
+.back,
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    backface-visibility: hidden;
+}
+
+.back {
+    transform: rotateY(0deg);
+}
+
+.front {
+    transform: rotateY(180deg);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 34px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
+}
+
+.speack {
+    position: absolute;
+    color: white;
+    font-size: 2em;
+    right: 20px;
+    margin-top: 10px;
+}
+
+.delete {
+    position: absolute;
+    color: white;
+    left: 20px;
+    margin-top: 10px;
+}
+
+.text {
+    color: white;
+    position: absolute;
+    font-size: 2em;
+    top: 50%; /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+    display: block;
+    line-height: 1;
+}
+
+.transcript {
+    color: white;
+    position: absolute;
+    font-size: 2em;
+    top: 70%; /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+}
+
+/**/
+.slides {
+    width: 1000px;
+    height: 500px;
+}
+ 
+.none {
+    display: none;
+}
+ 
