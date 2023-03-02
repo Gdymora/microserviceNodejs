@@ -9,7 +9,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "cli": "node ./core/cli/generate.js",
-    "migrate": "knex migrate:latest --env development"
+    "migrate": "knex migrate:latest --env development",
+    "knex-make": "knex migrate:make insert_data"
   },
   "keywords": [],
   "author": "",

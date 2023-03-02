@@ -7,6 +7,8 @@ const ControllerGenerator = require("./generators/controllerGenerator");
 const RepositoryGenerator = require("./generators/repositoryGenerator");
 const ServiceGenerator = require("./generators/serviceGenerator");
 const MigrationGenerator = require("./generators/migrationGenerator");
+const MigrationInsertGenerator = require("./generators/migrationInsertGenerator");
+const MigrationUpdateGenerator = require("./generators/migrationUpdateGenerator");
 /**
  * Generator file
  * example - npm run cli create (migration, controller) user
@@ -15,8 +17,8 @@ const argv = yargs
   .command("create <moduleType> <moduleName>", "Create a new module", {
     moduleType: {
       describe:
-        "The type of module to create (router, controller, repository, service, migration)",
-      choices: ["router", "controller", "repository", "service", "migration"],
+        "The type of module to create (router, controller, repository, service, migration, migration-insert, migration-update)",
+      choices: ["router", "controller", "repository", "service", "migration", "migration-insert", "migration-update"],
       demandOption: true,
     },
     moduleName: {
@@ -32,7 +34,7 @@ if (argv._[0] === "create") {
   const moduleType = argv.moduleType;
   const moduleName = argv.moduleName;
   let code = "";
-
+  let migrationNameArray = ["migration", "migration-insert", "migration-update"];
   switch (moduleType) {
     case "router":
       code = RouterGenerator.generate(moduleName);
@@ -49,11 +51,17 @@ if (argv._[0] === "create") {
     case "migration":
       code = MigrationGenerator.generate(moduleName);
       break;
+    case "migration-insert":
+      code = MigrationInsertGenerator.generate(moduleName);
+      break;
+    case "migration-update":
+      code = MigrationUpdateGenerator.generate(moduleName);
+      break;
   }
   const moduleDir = path.join(__dirname, moduleName);
 
   try {
-    if (moduleType !== "migration") {
+    if (!migrationNameArray.includes(moduleType)) {
       fs.mkdirSync(`${moduleType}s`);
       console.log("Directory created successfully");
     }
@@ -62,12 +70,12 @@ if (argv._[0] === "create") {
   }
   //fs.mkdirSync(`${moduleType}s/${moduleName}$`);
   try {
-    if (moduleType === "migration") {
+    if (migrationNameArray.includes(moduleType)) {
       fs.writeFileSync(
-        `${moduleType}s/${new Date().getTime()}_create_${moduleName}_table.js`,
+        `migrations/${new Date().getTime()}_create_${moduleName}_table.js`,
         code
       );
-      console.log(`Generated ${moduleType} module '${moduleName}'`);
+      console.log(`Generated migrationsmodule '${moduleName}'`);
     } else {
       fs.writeFileSync(
         `${moduleType}s/${moduleName}${
