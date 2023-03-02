@@ -1,0 +1,15 @@
+version: "3.2"
+services: 
+
+  adminer:
+    container_name: adminer-sqLite3-mc
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 9090:8080
+    volumes:
+        - ./adminer/login-password-less.php:/var/www/html/plugins-enabled/login-password-less.php
+        - ./mydatabase.sqlite3:/var/www/html/mydatabase.sqlite3
+    #admin
+    #admin
+    

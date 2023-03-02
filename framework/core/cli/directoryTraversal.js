@@ -1,5 +1,7 @@
 const fs = require('fs').promises;
-
+/**
+ * видає перелік каталогів та файлів
+ */
 class DirectoryTraversal {
   async traverseDirectory(path, level = 0) {
     const prefix = '  '.repeat(level);
@@ -25,6 +27,7 @@ class DirectoryTraversal {
   }
 }
 
-// Example usage
+// Це рекурсивно пройде my-directory каталог і запише його вміст на консоль.
+const directory = '.';
 const traversal = new DirectoryTraversal();
-traversal.traverseDirectory('.');
+traversal.traverseDirectory(directory);

@@ -14,6 +14,8 @@ import { ProductsComponent } from './navigation/products/products.component';
 import { ComponentsModule } from './navigation/components/components.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component'; 
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     RestartDialogComponent,
     CategoriesComponent,
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainLayoutComponent,
+    HeaderComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     ComponentsModule,

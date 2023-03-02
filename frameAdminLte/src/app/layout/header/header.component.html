@@ -1,0 +1,15 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Boby Full Fitness</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    
+    <ng-container *ngIf="isAuthenticated(); else login">
+      <a class="btn btn-outline-warning" (click)="logoutUser()">Вийти</a>
+    </ng-container>
+
+  </nav>
+
+  <ng-template #login>
+    <a class="btn btn-outline-primary mr-3" >Увійти</a>
+    <a class="btn btn-outline-primary">Зареєструватись</a>
+  </ng-template>
+</div>
