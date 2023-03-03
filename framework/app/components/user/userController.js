@@ -6,8 +6,12 @@ class UserController {
   }
 
   async getAllUsers(req, res) {
+ /*    const sql = 'SELECT * FROM users';
+    req.db.all(sql,(err, rows ) => {
+      console.log(rows)  
+  }); */
     try {
-      const user = await this.userService.getAllUsers();
+      const user = await this.userService.getAllUsers(req.db);
       res.status(200).json(user);
     } catch (err) {
       this.logger.error(err);
@@ -18,7 +22,7 @@ class UserController {
   async createUser(req, res) {
     try {
       console.log(req.body);
-      const user = await this.userService.createUser(req.body);
+      const user = await this.userService.createUser(req.db, req.body);
 
       res.status(201).json(user);
     } catch (err) {
@@ -29,7 +33,7 @@ class UserController {
 
   async getUser(req, res) {
     try {
-      const user = await this.userService.getUserById(req.params.id);
+      const user = await this.userService.getUserById(req.db, req.params.id);
       res.status(200).json(user);
     } catch (err) {
       this.logger.error(err);
@@ -39,7 +43,7 @@ class UserController {
 
   async updateUser(req, res) {
     try {
-      const user = await this.userService.updateUser(req.params.id, req.body);
+      const user = await this.userService.updateUser(req.db, req.params.id, req.body);
       res.status(200).json(user);
     } catch (err) {
       this.logger.error(err);
@@ -49,7 +53,7 @@ class UserController {
 
   async deleteUser(req, res) {
     try {
-      await this.userService.deleteUser(req.params.id);
+      await this.userService.deleteUser(req.db, req.params.id);
       res.status(204).send();
     } catch (err) {
       this.logger.error(err);

@@ -17,12 +17,12 @@ class UserService {
     }
   }
 
-  async getAllUsers() {
-    return await this.userRepository.getAll();
+  async getAllUsers(db) {
+    return await this.userRepository.getAll(db);
   }
 
-  async getUserById(id) {
-    return await this.userRepository.getById(id);
+  async getUserById(db, id) {
+    return await this.userRepository.getById(db, id);
   }
 
   async createUser(user) {
@@ -33,7 +33,7 @@ class UserService {
     } */
 
     // Create the user and log the operation
-    const userId = await this.userRepository.create(user);
+    const userId = await this.userRepository.create(db, user);
     this.logger.info(`User created: ${userId}`);
 
     return userId;
@@ -47,7 +47,7 @@ class UserService {
     }
 
     // Update the user and log the operation
-    const rowsAffected = await this.userRepository.update(id, user);
+    const rowsAffected = await this.userRepository.update(db, id, user);
     this.logger.info(`User updated: ${rowsAffected} rows affected`);
 
     return rowsAffected;
@@ -55,7 +55,7 @@ class UserService {
 
   async deleteUser(id) {
     // Delete the user and log the operation
-    const rowsAffected = await this.userRepository.delete(id);
+    const rowsAffected = await this.userRepository.delete(db, id);
     this.logger.info(`User deleted: ${rowsAffected} rows affected`);
 
     return rowsAffected;

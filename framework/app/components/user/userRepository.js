@@ -1,16 +1,20 @@
-const sqlite3 = require('sqlite3').verbose();
-const dbFilePath = '../../../mydatabase.sqlite3';
+const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
+const dbFilePath = path.join(__dirname, "../../../mydatabase.sqlite3");
+const express = require("express");
+const app = express();
+class UserRepository { 
+  initConnect = false;
+  constructor() { 
 
-class UserRepository {
-  init = false;
-  constructor() {
-    this.db = new sqlite3.Database(dbFilePath);
-    if (this.init) {
-      this.createTable();
-      this.insertTable();
+    if (this.initConnect) {   
+      
+    } else {
+      this.db = new sqlite3.Database(dbFilePath);
+      
     }
   }
-
+ 
   createTable() {
     const sql = `
       CREATE TABLE IF NOT EXISTS users (
@@ -26,23 +30,24 @@ class UserRepository {
     this.db.run(sql);
   }
 
-  getAll() {
-    const sql = 'SELECT * FROM users';
-    return new Promise((resolve, reject) => {
-      this.db.all(sql, (err, rows) => {
+  getAll(db) { 
+     const sql = "SELECT * FROM users";
+      return new Promise((resolve, reject) => {
+         db.all(sql, (err, rows) => {
         if (err) {
           reject(err);
         } else {
           resolve(rows);
         }
       });
-    });
+    });   
+
   }
 
-  getById(id) {
-    const sql = 'SELECT * FROM users WHERE id = ?';
+  getById(db, id) {
+    const sql = "SELECT * FROM users WHERE id = ?";
     return new Promise((resolve, reject) => {
-      this.db.get(sql, [id], (err, row) => {
+      db.get(sql, [id], (err, row) => {
         if (err) {
           reject(err);
         } else {
@@ -52,10 +57,10 @@ class UserRepository {
     });
   }
 
-  create(user) {
-    const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
+  create(db, user) {
+    const sql = "INSERT INTO users (name, email) VALUES (?, ?)";
     return new Promise((resolve, reject) => {
-      this.db.run(sql, [user.name, user.email], function (err) {
+      db.run(sql, [user.name, user.email], function (err) {
         if (err) {
           reject(err);
         } else {
@@ -65,10 +70,10 @@ class UserRepository {
     });
   }
 
-  update(id, user) {
-    const sql = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
+  update(db, id, user) {
+    const sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
     return new Promise((resolve, reject) => {
-      this.db.run(sql, [user.name, user.email, id], function (err) {
+      db.run(sql, [user.name, user.email, id], function (err) {
         if (err) {
           reject(err);
         } else {
@@ -78,10 +83,10 @@ class UserRepository {
     });
   }
 
-  delete(id) {
-    const sql = 'DELETE FROM users WHERE id = ?';
+  delete(db, id) {
+    const sql = "DELETE FROM users WHERE id = ?";
     return new Promise((resolve, reject) => {
-      this.db.run(sql, [id], function (err) {
+      db.run(sql, [id], function (err) {
         if (err) {
           reject(err);
         } else {
@@ -91,8 +96,8 @@ class UserRepository {
     });
   }
 
-  close() {
-    this.db.close();
+  close(db) {
+     db.close();
   }
 }
 
