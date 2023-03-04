@@ -2,9 +2,9 @@
   <h3>Recent Posts</h3>
   <%  posts.slice(0, 3).forEach(function(post) { %>
     <article>
-      <h4><%= post.title %></h4>
-      <p><%= post.excerpt %></p>
-      <p><a href="/blog/<%= post.slug %>">Read More</a></p>
+      <h4><%= post.post_title %></h4>
+      <p><%= post.post_excerpt %></p>
+      <p><a href="/blog/<%= post.post_name %>">Read More</a></p>
     </article>
   <% }); %>
 </aside>

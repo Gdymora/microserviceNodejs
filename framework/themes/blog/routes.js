@@ -1,5 +1,5 @@
 class getRoutesPagesPath {
-  getRoutes(data) { 
+ getRoutes(data) { 
     const routes = [
       {
         method: 'GET',
