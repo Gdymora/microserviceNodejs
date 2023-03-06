@@ -5,6 +5,8 @@ const app = express();
 const container = require('./core/container');
 const bodyParser = require('body-parser');
 //const RouteManager = require('./core/routeManager');
+const PluginLoader = require('./core/plugin/plugin-loader');
+const pluginLoader = new PluginLoader(path.join(__dirname, './plugins'));
 const DatabaseMiddlewareFactoryConnect = require('./core/middleware/databaseMiddlewareFactoryConnect');
 
 const dbConfig = {
@@ -46,6 +48,30 @@ app.get('/users-db', async (req, res, next) => {
   req.db.all(sql,(err, rows ) => {
     console.log(rows)  
 });
+});
+
+/* plugins */
+const MainMenuPlugin = require('./plugins/mainMenuPlugin');
+const plugin = new MainMenuPlugin()
+// Initialize main menu plugin
+plugin.init(app);
+app.get('/plugins', (req, res) => {
+  const plugins = pluginLoader.getPlugins();
+  if (plugins) {
+    res.send(`Plugin ${plugins} loaded`);
+  } else {
+    res.status(404).send(`Plugin ${plugins} not found`);
+  }
+});
+
+app.get('/plugin/:name', (req, res) => {
+  const pluginName = req.params.name;
+  const plugin = pluginLoader.getPlugin(pluginName);
+  if (plugin) {
+    res.send(`Plugin ${pluginName} loaded`);
+  } else {
+    res.status(404).send(`Plugin ${pluginName} not found`);
+  }
 });
 
 app.use('/users', userRouter.init());
