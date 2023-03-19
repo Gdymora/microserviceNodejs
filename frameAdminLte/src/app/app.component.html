@@ -1,46 +1,66 @@
-<header>
-  <app-navbar></app-navbar>
-</header>
 <body>
-  <section class="main-content">
-    <div class="main">
-       <router-outlet></router-outlet>
-    </div>
-   
-  </section>
+  <div class="container">
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="logo.png" alt="" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">Codinglab</span>
+            <span class="profession">Web developer</span>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+      <app-sidebar></app-sidebar>
+    </nav>
+
+    <section class="home">
+      <!-- ALERT -->
+      <!--   <div class="cs-alert">
+    <app-alert></app-alert>
+  </div> -->
+      <app-navbar></app-navbar>
+      <div class="text">Dashboard Sidebar</div>
+      <router-outlet></router-outlet>
+    </section>
+  </div>
   <footer>
     <mat-toolbar class="toolbarNav">
-      <button mat-flat-button routerLink="/dictionary/dictionary" routerLinkActive="active-link">
-        <mat-icon class="material-icons color_blue">
-          book_online</mat-icon>
+      <button
+        mat-flat-button
+        routerLink="/dictionary/dictionary"
+        routerLinkActive="active-link"
+      >
+        <mat-icon class="material-icons color_blue"> book_online</mat-icon>
         <span>Dictionary</span>
       </button>
-      <button mat-flat-button routerLink="/top-artists" routerLinkActive="active-link">
-        <mat-icon class="material-icons color_blue">
-          star_border</mat-icon>
+      <button
+        mat-flat-button
+        routerLink="/top-artists"
+        routerLinkActive="active-link"
+      >
+        <mat-icon class="material-icons color_blue"> star_border</mat-icon>
         <span>Top Artists</span>
       </button>
-      <button mat-flat-button routerLink="/top-tracks" routerLinkActive="active-link">
-        <mat-icon class="material-icons color_blue">favorite_border
-        </mat-icon>
+      <button
+        mat-flat-button
+        routerLink="/top-tracks"
+        routerLinkActive="active-link"
+      >
+        <mat-icon class="material-icons color_blue">favorite_border </mat-icon>
         <span>Top Tracks</span>
       </button>
-      <button mat-flat-button routerLink="/history" routerLinkActive="active-link">
+      <button
+        mat-flat-button
+        routerLink="/history"
+        routerLinkActive="active-link"
+      >
         <mat-icon class="material-icons color_blue">history</mat-icon>
         <span>History</span>
       </button>
     </mat-toolbar>
   </footer>
 </body>
-
-<!-- <div class="p-16">
-  <p class="text-center">Tap on a card to flip it. You can only flip a maximum of two cards at a time. A match will
-    remove
-    those cards!</p>
-
-  <div class="grid p-16">
-    <app-game-card *ngFor="let c of cards; let idx=index" [data]="c" (cardClicked)="cardClicked(idx)">
-    </app-game-card>
-  </div>
-</div> -->
-

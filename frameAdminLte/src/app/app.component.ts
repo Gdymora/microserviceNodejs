@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CardData } from './card-data.model';
 
 @Component({
-  selector: 'english-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
