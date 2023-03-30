@@ -22,7 +22,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CategoriesComponent,
     ProductsComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent    
   ],
   imports: [
     AppRoutingModule,
