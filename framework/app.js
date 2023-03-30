@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const userRouter = require('./app/components/user/userRouter');
+const routerTheme = require('./app/components/theme/routerTheme');
 const app = express();
 const container = require('./core/container');
 const bodyParser = require('body-parser');
@@ -75,6 +76,7 @@ app.get('/plugin/:name', (req, res) => {
 });
 
 app.use('/users', userRouter.init());
+app.use('/themes', routerTheme);
 app.use(function (err, req, res, next) {
   const logger = container.resolve('logger');
   logger.error(err);

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +20,11 @@ export class SidebarComponent implements OnInit {
     const searchBtn = (<HTMLElement>body).querySelector('.search-box');
     const modeSwitch = (<HTMLElement>body).querySelector('.toggle-switch');
     const modeText = (<HTMLElement>body).querySelector('.mode-text');
+    const arrow = (<HTMLElement>body).querySelector('.arrow');
+
+    arrow?.addEventListener('click', () => {
+      arrow?.classList.toggle('showMenu');
+    });
 
     toggle?.addEventListener('click', () => {
       sidebar?.classList.toggle('close');
@@ -37,6 +42,6 @@ export class SidebarComponent implements OnInit {
       } else {
         (<HTMLElement>modeText).innerText = 'Dark mode';
       }
-    });
+    });   
   }
 } 
