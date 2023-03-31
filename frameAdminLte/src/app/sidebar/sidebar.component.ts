@@ -20,11 +20,15 @@ export class SidebarComponent implements OnInit {
     const searchBtn = (<HTMLElement>body).querySelector('.search-box');
     const modeSwitch = (<HTMLElement>body).querySelector('.toggle-switch');
     const modeText = (<HTMLElement>body).querySelector('.mode-text');
-    const arrow = (<HTMLElement>body).querySelector('.arrow');
-
-    arrow?.addEventListener('click', () => {
-      arrow?.classList.toggle('showMenu');
-    });
+    
+    const arrow = (<HTMLElement>body).querySelectorAll('.arrow');
+    for (let i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener('click', (event: any) => {  
+        console.log(event.target.parentElement.parentElement)
+        let arrowParent = event.target.parentElement.parentElement;
+        arrowParent.classList.toggle('showMenu');
+      });
+    }
 
     toggle?.addEventListener('click', () => {
       sidebar?.classList.toggle('close');
@@ -43,5 +47,6 @@ export class SidebarComponent implements OnInit {
         (<HTMLElement>modeText).innerText = 'Dark mode';
       }
     });   
+    
   }
 } 
